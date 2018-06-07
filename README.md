@@ -1,13 +1,13 @@
-# HELM CHART FOR KUBERNATOR
+# Helm Chart for Kubernator
 
 ## Kubernator?
-Kubernator is a web dashboard for Kuberenetes. It's a complement for other dashboards, as Kubernator focus on representing and editing all objects in the cluster, including CRDs.
+Kubernator is a web dashboard for Kuberenetes. It is a complement for other dashboards, as Kubernator focus on representing and editing all objects in the cluster, including CRDs.
 
 Please check out and give an star to its [repository](https://github.com/smpio/kubernator).
 
 This chart adds a new feature: letting expose Kubernator with an ingress. I add a new container to the pod that runs `kubectl proxy` for you and then expose its port for the appropriate paths in an ingress. For that, this chart creates a serviceAccount and clusterRoleBinding with **cluster-admin permissions**.
 
-For that it is necessary to use an ingress controller, no way to do it via service. You can always access Kubernator by running `kubectl proxy` in your local.
+It is necessary to use an ingress controller, no way to do it via service. You can always access Kubernator by running `kubectl proxy` in your local.
 
 
 
