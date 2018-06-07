@@ -1,0 +1,14 @@
+image: smpio/kubernator:v0.14.10
+kubectlImage: lachlanevenson/k8s-kubectl:v1.10.3
+# podAnnotations:
+#   foo: bar
+# svcAnnotations:
+#   foo: bar
+ingress:
+  enabled: true
+  # annotations:
+  #   foo: bar
+  externalDnsName: kubernator.domain.com
+  tls:
+    enabled: true
+    # secretName: my-tls-secret

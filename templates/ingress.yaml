@@ -1,0 +1,45 @@
+{{- if .Values.ingress.enabled }}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  {{- if .Values.ingress.annotations }}
+  annotations:
+  {{- range $key, $value := .Values.ingress.annotations }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
+  {{- end }}
+  name: {{ .Release.Name }}
+spec:
+  rules:
+  - host: {{ .Values.ingress.externalDnsName }}
+    http:
+      paths:
+      - backend:
+          serviceName: kubernator
+          servicePort: 80
+      - backend:
+          serviceName: kubernator
+          servicePort: 8080
+        path: /version
+      - backend:
+          serviceName: kubernator
+          servicePort: 8080
+        path: /apis
+      - backend:
+          serviceName: kubernator
+          servicePort: 8080
+        path: /api
+      - backend:
+          serviceName: kubernator
+          servicePort: 8080
+        path: /swaggerapi
+
+  {{- if .Values.ingress.tls.enabled }}
+  tls:
+  - hosts:
+    - {{ .Values.ingress.externalDnsName }}
+    {{- if .Values.ingress.tls.secretName }}
+    secretName: {{- .Values.ingress.tls.secretName }}
+    {{- end }}
+  {{- end }}
+{{- end }}
